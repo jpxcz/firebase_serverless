@@ -11,7 +11,7 @@ export default class Login extends React.Component {
 
   public render() {
     return (
-      <Container>
+      <Container center={true}>
         <Card>
           <Title>Login</Title>
           <Input placeholder="Usuario" label="Correo" />
