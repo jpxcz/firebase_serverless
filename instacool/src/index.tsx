@@ -5,13 +5,27 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Router } from 'react-router';
 import createHistory from 'history/createBrowserHistory';
+import { Provider } from 'react-redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import * as reducers from './ducks';
+import services from './services';
 
-const history = createHistory()
+const history = createHistory();
+
+const store = createStore(
+  combineReducers({
+    ...reducers,
+  }), 
+  applyMiddleware(thunk.withExtraArgument(services))
+);
 
 ReactDOM.render(
-  <Router history={history}>
-    < App />
-  </Router>,
+  <Provider store={store}>
+    <Router history={history}>
+      < App />
+    </Router>
+  </Provider>,
   document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
