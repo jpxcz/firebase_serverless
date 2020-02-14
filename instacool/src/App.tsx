@@ -5,6 +5,7 @@ import './App.css';
 import Login from './containers/Auth/Login';
 import Register from './containers/Auth/Register';
 import NewsFeed from './containers/NewsFeed';
+import Profile from './containers/Profile';
 import NavBar from './components/NavBar';
 
 
@@ -15,6 +16,7 @@ const App: React.FC = () => {
       <Route exact={true} path='/register' component={Register} />
       <Route path='/app' component={NavBar} />
       <Route exact={true} path='/app/newsfeed' component={NewsFeed} />
+      <Route exact={true} path='/app/profile' component={Profile} />
     </div>
   );
 }
