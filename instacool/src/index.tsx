@@ -4,26 +4,27 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Router } from 'react-router';
-import createHistory from 'history/createBrowserHistory';
+import { createBrowserHistory } from 'history';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import * as reducers from './ducks';
 import services from './services';
-
-const history = createHistory();
+import { reducer as formReducer } from 'redux-form';
+const history = createBrowserHistory();
 
 const store = createStore(
   combineReducers({
     ...reducers,
-  }), 
+    form: formReducer,
+  }),
   applyMiddleware(thunk.withExtraArgument(services))
 );
 
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-      < App />
+      < App history={history} />
     </Router>
   </Provider>,
   document.getElementById('root'));
